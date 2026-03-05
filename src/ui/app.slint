@@ -48,6 +48,7 @@ export component AppWindow inherits Window {
     in property <bool> is_exporting: false;
     in property <bool> is_cloning: false;
     in property <bool> is_moving: false;
+    in property <bool> is_compacting: false;
     in-out property <bool> is_window_visible: true;
     in property <string> install_status: "";
     in property <bool> install_success: false;
@@ -185,6 +186,7 @@ export component AppWindow inherits Window {
     callback select_clone_folder();
     callback confirm_clone(string, string, string);
     callback open_move_dialog(string);
+    callback compact_distro(string);
     callback select_move_folder();
     callback confirm_move(string, string, string);
     callback confirm_move_action();
@@ -366,6 +368,9 @@ export component AppWindow inherits Window {
                                 }
                                 open_move_dialog(n) => {
                                     root.open_move_dialog(n);
+                                }
+                                compact_distro(n) => {
+                                    root.compact_distro(n);
                                 }
                                 information_clicked(n) => {
                                     root.information_clicked(n);

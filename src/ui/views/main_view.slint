@@ -17,6 +17,7 @@ component DistroList inherits VerticalLayout {
     callback open_export_dialog(string);
     callback open_clone_dialog(string);
     callback open_move_dialog(string);
+    callback compact_distro(string);
     callback edit_bashrc_distro(string);
     callback information_clicked(string);
     callback delete_clicked(string);
@@ -66,6 +67,9 @@ component DistroList inherits VerticalLayout {
         move_clicked => {
             root.open_move_dialog(d.name);
         }
+        compact_clicked => {
+            root.compact_distro(d.name);
+        }
         edit_bashrc_clicked => {
             root.edit_bashrc_distro(d.name);
         }
@@ -96,6 +100,7 @@ export component MainView inherits VerticalLayout {
     callback open_export_dialog(string);
     callback open_clone_dialog(string);
     callback open_move_dialog(string);
+    callback compact_distro(string);
     callback edit_bashrc_distro(string);
     callback information_clicked(string);
     callback delete_clicked(string);
@@ -143,6 +148,9 @@ export component MainView inherits VerticalLayout {
                 }
                 open_move_dialog(n) => {
                     root.open_move_dialog(n);
+                }
+                compact_distro(n) => {
+                    root.compact_distro(n);
                 }
                 edit_bashrc_distro(n) => {
                     root.edit_bashrc_distro(n);

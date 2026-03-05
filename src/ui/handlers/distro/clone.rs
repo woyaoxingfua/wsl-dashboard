@@ -12,7 +12,7 @@ pub fn setup(app: &AppWindow, app_handle: slint::Weak<AppWindow>, app_state: Arc
     app.on_open_clone_dialog(move |name| {
         info!("Operation: Open clone dialog - {}", name);
         if let Some(app) = ah.upgrade() {
-            if app.get_is_cloning() || app.get_is_exporting() || app.get_is_moving() {
+            if app.get_is_cloning() || app.get_is_exporting() || app.get_is_moving() || app.get_is_compacting() {
                 app.set_current_message(i18n::t("dialog.operation_in_progress").into());
                 app.set_show_message_dialog(true);
                 return;
@@ -62,7 +62,7 @@ pub fn setup(app: &AppWindow, app_handle: slint::Weak<AppWindow>, app_state: Arc
             None => return,
         };
 
-        if ah.get_is_cloning() || ah.get_is_exporting() || ah.get_is_moving() {
+        if ah.get_is_cloning() || ah.get_is_exporting() || ah.get_is_moving() || ah.get_is_compacting() {
             return;
         }
 

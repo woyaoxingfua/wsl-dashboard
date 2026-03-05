@@ -177,6 +177,7 @@ component ExpandedActionIcons inherits VerticalLayout {
     callback export_distro();
     callback clone();
     callback move_distro();
+    callback compact_distro();
     callback delete_distro();
     callback settings();
     callback configs();
@@ -217,6 +218,15 @@ component ExpandedActionIcons inherits VerticalLayout {
             tooltip: AppI18n.t("distro.move", [AppI18n.version]);
             clicked => {
                 root.move_distro();
+            }
+        }
+
+        ActionIcon {
+            icon: "\u{E7B8}";
+            is_font_icon: true;
+            tooltip: AppI18n.t("distro.compact", [AppI18n.version]);
+            clicked => {
+                root.compact_distro();
             }
         }
 
@@ -274,6 +284,7 @@ export component DistroCard inherits Rectangle {
     callback edit_bashrc_clicked;
     callback clone_clicked;
     callback move_clicked;
+    callback compact_clicked;
     callback information_clicked;
     callback configs_clicked;
     callback expand_clicked;
@@ -416,6 +427,9 @@ export component DistroCard inherits Rectangle {
                         move_distro => {
                             root.move_clicked();
                         }
+                        compact_distro => {
+                            root.compact_clicked();
+                        }
                         delete_distro => {
                             root.delete_clicked();
                         }
@@ -446,6 +460,9 @@ export component DistroCard inherits Rectangle {
                         }
                         move_distro => {
                             root.move_clicked();
+                        }
+                        compact_distro => {
+                            root.compact_clicked();
                         }
                         delete_distro => {
                             root.delete_clicked();

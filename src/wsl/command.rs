@@ -32,6 +32,11 @@ impl WslCommandExecutor {
     pub async fn move_distro(&self, distro_name: &str, new_path: &str) -> WslCommandResult<String> {
         crate::wsl::ops::lifecycle::move_distro(self, distro_name, new_path).await
     }
+
+    // Compact specified WSL subsystem disk
+    pub async fn compact_distro(&self, distro_name: &str) -> WslCommandResult<String> {
+        crate::wsl::ops::lifecycle::compact_distro(self, distro_name).await
+    }
     
     // Export specified WSL subsystem
     pub async fn export_distro(&self, distro_name: &str, file_path: &str) -> WslCommandResult<String> {

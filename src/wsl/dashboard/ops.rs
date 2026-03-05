@@ -134,6 +134,17 @@ impl WslDashboard {
         result
     }
 
+    pub async fn compact_distro(&self, name: &str) -> WslCommandResult<String> {
+        let _heavy_lock = self.heavy_op_lock.lock().await;
+        self.increment_manual_operation();
+        let result = self.executor.compact_distro(name).await;
+        if result.success {
+            let _ = self.refresh_distros().await;
+        }
+        self.decrement_manual_operation();
+        result
+    }
+
     pub async fn open_distro_bashrc(&self, name: &str) -> WslCommandResult<String> {
         self.executor.open_distro_folder_path(name, "~").await
     }

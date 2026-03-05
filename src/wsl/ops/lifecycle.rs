@@ -236,3 +236,8 @@ pub async fn move_distro(executor: &WslCommandExecutor, distro_name: &str, new_p
     info!("Operation: Move WSL distribution - {} to {}", distro_name, new_path);
     executor.execute_command(&["--manage", distro_name, "--move", new_path]).await
 }
+
+pub async fn compact_distro(executor: &WslCommandExecutor, distro_name: &str) -> WslCommandResult<String> {
+    info!("Operation: Compact WSL distribution disk - {}", distro_name);
+    executor.execute_command(&["--manage", distro_name, "--compact"]).await
+}

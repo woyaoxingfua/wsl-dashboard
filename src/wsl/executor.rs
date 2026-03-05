@@ -47,7 +47,8 @@ impl WslCommandExecutor {
         let write_ops = [
             "--import", "--export", "--unregister", "--install", 
             "--set-version", "--set-default-version", "--set-default", "-s",
-            "--shutdown", "--terminate", "-t", "--mount", "--unmount", "--update"
+            "--shutdown", "--terminate", "-t", "--mount", "--unmount", "--update",
+            "--manage", "--move", "--compact", "--set-sparse"
         ];
         
         // Use case-insensitive check for write operations
@@ -142,7 +143,11 @@ impl WslCommandExecutor {
         // Detect heavy operations that need much longer timeouts (e.g., multi-GiB disk transfers)
         let is_heavy_op = args_owned.iter().any(|arg| {
             let lower = arg.to_lowercase();
-            lower == "--import" || lower == "--export" || lower == "--install"
+            lower == "--import"
+                || lower == "--export"
+                || lower == "--install"
+                || lower == "--move"
+                || lower == "--compact"
         });
 
         let timeout_duration = if is_heavy_op {

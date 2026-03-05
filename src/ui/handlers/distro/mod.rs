@@ -16,6 +16,7 @@ pub mod move_distro;
 pub mod move_logic;
 pub mod settings_logic;
 pub mod config_logic;
+pub mod compact;
 
 pub fn sanitize_instance_name(name: &str) -> String {
     let mut sanitized: String = name.chars()
@@ -44,6 +45,7 @@ pub fn setup(app: &AppWindow, app_handle: slint::Weak<AppWindow>, app_state: Arc
     clone::setup(app, app_handle.clone(), app_state.clone());
     install::setup(app, app_handle.clone(), app_state.clone());
     move_distro::setup(app, app_handle.clone(), app_state.clone());
+    compact::setup(app, app_handle.clone(), app_state.clone());
 }
 
 pub fn spawn_file_size_monitor(
